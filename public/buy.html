@@ -63,54 +63,54 @@
     </div>
 
     <script src="app.js"></script>
-    <script type="module">
-        // Import the functions you need from Firebase SDK
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
-        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-analytics.js";
-    
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyCAZd-0GOr1rwTLct7SB7QeaVNuTP7_ra4",
-            authDomain: "booksell-9ed8c.firebaseapp.com",
-            projectId: "booksell-9ed8c",
-            storageBucket: "booksell-9ed8c.appspot.com",
-            messagingSenderId: "254147042597",
-            appId: "1:254147042597:web:518384080203dcee3d8ecc",
-            measurementId: "G-T0YB8BD35L"
-        };
-    
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        const db = getFirestore(app);
-    
-        // Fetch books from Firestore and display them
-        const bookList = document.getElementById("bookList");
-    
-        async function displayBooks() {
-            const booksCollection = collection(db, "books");
-            const bookSnapshot = await getDocs(booksCollection);
-            const bookListArray = bookSnapshot.docs.map(doc => doc.data());
-    
-            bookListArray.forEach(book => {
-                const bookItem = document.createElement("div");
-                bookItem.className = "book-item";
-                bookItem.innerHTML = `
-                    <h3>${book.title}</h3>
-                    <p>Author: ${book.author}</p>
-                    <p>Price: ₹${book.price}</p>
-                    <p>Contact: ${book.contact}</p>
-                    <p>Description: ${book.description}</p>
-                `;
-                bookList.appendChild(bookItem);
-            });
-        }
-    
-        // Call the function to display books on page load
-        window.onload = displayBooks;
-    </script>
-    
+<script type="module">
+    // Import the functions you need from Firebase SDK
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-analytics.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyCAZd-0GOr1rwTLct7SB7QeaVNuTP7_ra4",
+        authDomain: "booksell-9ed8c.firebaseapp.com",
+        projectId: "booksell-9ed8c",
+        storageBucket: "booksell-9ed8c.appspot.com",
+        messagingSenderId: "254147042597",
+        appId: "1:254147042597:web:518384080203dcee3d8ecc",
+        measurementId: "G-T0YB8BD35L"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
+
+    // Fetch books from Firestore and display them
+    const bookList = document.getElementById("bookList");
+
+    async function displayBooks() {
+        const booksCollection = collection(db, "books");
+        const bookSnapshot = await getDocs(booksCollection);
+        const bookListArray = bookSnapshot.docs.map(doc => doc.data());
+
+        bookListArray.forEach(book => {
+            const bookItem = document.createElement("div");
+            bookItem.className = "book-item";
+            bookItem.innerHTML = `
+                <h3>${book.title}</h3>
+                <p>Author: ${book.author}</p>
+                <p>Price: ₹${book.price}</p>
+                <p>Contact: ${book.contact}</p>
+                <p>Description: ${book.description}</p>
+            `;
+            bookList.appendChild(bookItem);
+        });
+    }
+
+    // Call the function to display books on page load
+    window.onload = displayBooks;
+</script>
+
 
 </body>
 </html>
